@@ -1,6 +1,7 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "compare360",
+  "version": "1.0.0",
+  "author": "Moshe Rasetsoke",
   "scripts": {
     "start:prod": "node server.js",
     "ng": "ng",
