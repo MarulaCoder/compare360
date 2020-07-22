@@ -1,32 +1,87 @@
-<!-- Masthead -->
-<header class="masthead text-black text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
+<div class="container-fluid">
+	<!-- // search section // -->
+	<!-- <section class="search-sec"> -->
+		<div class="container search-sec">
+				<form class="form" action="#" method="post" novalidate="novalidate">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-12 px-2">
+									<input type="range" class="form-range search-premium-range" value="100" min="0" max="5" step="0.5" id="customRange3">
+									<div class="d-flex justify-content-between"> 
+										<small class="text-muted">R20</small> 
+										<small class="text-muted">R1000</small> 
+									</div>
+								</div>
 
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-5">Find the best funeral scheme that is right for your needs.</h2>
-        </div>
+								<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+									<input type="number" class="form-control search-slt" placeholder="Enter Monthtly Premium">
+								</div>
 
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-                <div class="col-12 col-md-4 mb-2 mb-md-0">
-                    <input type="number" class="form-control form-control-lg" min="20" step="10" max="1000">
-                </div>
-                <div class="col-12 col-md-4 mb-2 mb-md-0">
-                    <select class="form-control form-control-lg">
-                        <option *ngFor="let province of provinces">{{province}}</option>
-                    </select>
-                </div>
-                <div class="col-12 col-md-4">
-                    <button type="submit" class="btn btn-block btn-lg btn-primary">
-                        find scheme
-                    </button>
-                </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-</header>
+								<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+									<select class="form-control selectpicker search-slt" data-live-search="true" title="Please select province" id="exampleFormControlSelect1">
+										<option>Select Province</option>
+										<option *ngFor="let province of provinces" value="{{province}}">{{province}}</option>
+									</select>
+								</div>
+
+								<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+									<button type="button" class="btn btn-danger wrn-btn" (click)="searchProducts()">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+	<!-- </section> -->
+	<!-- // search section ends // -->
+
+
+	<!-- // search results section // -->
+	
+	<div *ngIf="productsFound" class="container mt-5">
+		<div class="row text-center">
+			<div class="col-xl-9 mx-auto">
+				<h6 class="mb-5">results closely matching your search...</h6>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" *ngFor="let provider of productsFound">
+				<div class="pricing-card p-3 text-center py-2 mt-2" *ngFor="let product of provider.products">
+					
+					<div class="d-flex flex-row justify-content-between mb-3">
+						<div class="images">
+							<img src="assets/img/user.jpg" width="50">
+						</div>
+						<span class="border px-1">Viewed: {{provider.viewed}}</span>
+						<span class="border px-1">Rating: {{provider.rating}}</span>
+					</div>
+
+					<h6 class="mt-3">{{product.productname}}</h6>
+
+					<span class="d-block font-weight-bold mt-3">R{{product.premium}}</span>
+
+					<span class="d-block">PER MONTH</span>
+
+					<div class="mt-3">
+						<span class="d-block" *ngFor="let benefit of product.benefits">
+							<i class="fa fa-check"></i>&nbsp;{{benefit}}
+						</span>
+					</div>
+
+					<span class="d-block font-weight-bold mt-3">{{product.waiting}} months</span>
+
+					<span class="d-block">Waiting Period</span>
+
+					<button class="btn btn-primary shadow mt-4 px-5 rounded-pill" type="button">
+						<small>more info</small>
+					</button>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- // search results section ends // -->
+</div>

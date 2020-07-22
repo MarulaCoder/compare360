@@ -67,7 +67,7 @@
     transition: color .3s ease;
   }
 
-  .custom-menu {
+.custom-menu {
     display: inline-block;
     position: absolute;
     top: 10px;
@@ -75,12 +75,31 @@
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; 
-  }
+}
 
-  .custom-menu .btn {
+.custom-menu .btn {
     width: 40px;
     height: 40px;
-    border-radius: 50%; }
+	border-radius: 50%; 
+}
+
+.custom-menu .btn.btn-primary {
+    background: #6749b9;
+    border-color: #6749b9; 
+}
+  
+.custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
+    background: #6749b9 !important;
+	border-color: #6749b9 !important; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.custom-menu {
+	  	-webkit-transition: none;
+	  	-o-transition: none;
+	  	transition: none; 
+	} 
+}
 
   .sidebar-content {
     max-height: calc(100% - 30px);
