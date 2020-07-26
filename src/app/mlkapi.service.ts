@@ -2,19 +2,19 @@ import {catchError, retry} from 'rxjs/internal/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { Product } from './models/product';
+import { Product } from './shared/models/product';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MlkapiService {
-  private SERVER_URL = "http://localhost:3000";
+  private SERVER_URL = "http://localhost:3000/api";
   
   constructor(private httpClient: HttpClient) { }
 
   public fetchProducts(){  
-		return this.httpClient.get(`${this.SERVER_URL}/api/products`);  
+		return this.httpClient.get(`${this.SERVER_URL}/products/search/199.59`);  
   } 
   
   public fetchProvinces(){  
@@ -22,7 +22,7 @@ export class MlkapiService {
   }
   
   getProducts(): Observable<HttpResponse<Product[]>> {
-    return this.httpClient.get<Product[]>( this.SERVER_URL, { observe: 'response' });
+    return this.httpClient.get<Product[]>( `${this.SERVER_URL}/products`, { observe: 'response' });
   }
 
   getSmartphone(): Observable<any> {

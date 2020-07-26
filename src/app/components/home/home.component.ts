@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MlkapiService } from '../../mlkapi.service';
 
-import { Product } from '../../models/product';
+import { Product } from '../../shared/models/product';
+import { Province } from '../../shared/models/province';
+
+//import { SearchResult } from '../../models/searchresult'
 
 @Component({
 	selector: 'app-home',
@@ -11,23 +14,23 @@ import { Product } from '../../models/product';
 
 export class HomeComponent implements OnInit {
 	products: Array<Product> = [];
-	provinces: Array<any> = [];
+	provinces: Array<Province> = [];
 
 	constructor(private mlkapiService: MlkapiService) { }
 
 	ngOnInit(): void {
-		/*
-		this.mlkapiService.fetchProvinces().subscribe((data: any[])=>{  
+		
+		this.mlkapiService.fetchProvinces().subscribe((data: any) => {  
 			console.log(data);  
-			this.provinces = data;  
+			this.provinces = data['provinces'];  
 		})
-		*/
+		
 	}
 
 	searchProducts(){
-		this.mlkapiService.fetchProducts().subscribe((data: any[])=>{  
+		this.mlkapiService.getProducts().subscribe((data: any)=>{  
 			console.log(data);  
-			this.products = data;  
+			this.products = data.body['products'];  
 		})
 	}
 }
