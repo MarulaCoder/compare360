@@ -20,12 +20,12 @@
 						<div class="col-lg-3 col-md-3 col-sm-12 p-0">
 							<select class="form-control selectpicker search-slt" data-live-search="true" title="Please select province" id="exampleFormControlSelect1">
 								<option>Select Province</option>
-								<option *ngFor="let province of provinces" value="{{province}}">{{province}}</option>
+								<option *ngFor="let province of provinces$" value="{{province}}">{{province}}</option>
 							</select>
 						</div>
 
 						<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-							<button type="button" class="btn btn-danger wrn-btn" (click)="searchProducts()">Search</button>
+							<button type="button" class="btn btn-danger wrn-btn" (click)="getAllProducts()">Search</button>
 						</div>
 					</div>
 				</div>
@@ -36,14 +36,14 @@
 
 	<!-- // search results section // -->
 	
-	<div *ngIf="products" class="container mt-5">
+	<div *ngIf="products$" class="container mt-5">
 		<div class="row text-center">
 			<div class="col-xl-9 mx-auto">
 				<h6 class="mb-5">results closely matching your search...</h6>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4" *ngFor="let product of products">
+			<div class="col-md-4" *ngFor="let product of products$">
 				<div class="pricing-card p-3 text-center py-2 mt-2">
 					
 					<div class="d-flex flex-row justify-content-between mb-3">

@@ -3,6 +3,15 @@ import { MlkapiService } from '../../mlkapi.service';
 
 import { Product } from '../../shared/models/product';
 import { Province } from '../../shared/models/province';
+import { ProductSearch } from '../../shared/search/productsearch';
+import { Observable, Subject } from 'rxjs';
+
+import {
+	tap,
+	switchMap,
+	debounceTime,
+	distinctUntilChanged
+  } from "rxjs/operators";
 
 //import { SearchResult } from '../../models/searchresult'
 
@@ -13,24 +22,27 @@ import { Province } from '../../shared/models/province';
 })
 
 export class HomeComponent implements OnInit {
-	products: Array<Product> = [];
-	provinces: Array<Province> = [];
+	provinces$: Observable<Province[]>;
+	products$: Observable<Product[]>;
 
 	constructor(private mlkapiService: MlkapiService) { }
 
 	ngOnInit(): void {
-		
-		this.mlkapiService.fetchProvinces().subscribe((data: any) => {  
+		this.mlkapiService.getAllProvinces().subscribe((data: any) => {  
 			console.log(data);  
-			this.provinces = data['provinces'];  
-		})
+			this.provinces$ = data['provinces'];  
+		});
 		
 	}
 
-	searchProducts(){
-		this.mlkapiService.getProducts().subscribe((data: any)=>{  
+	getAllProducts(){
+		this.mlkapiService.getAllProducts().subscribe((data: any)=>{  
 			console.log(data);  
-			this.products = data.body['products'];  
+			this.products$ = data['products'];  
 		})
 	}
+
+	searchProductsByPremium(){}
+
+
 }
